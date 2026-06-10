@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
-Allow: /video
 Disallow: /admin
 Disallow: /admin.html
 
-Sitemap: https://4kpornvideo.com/sitemap.xml
+Sitemap: https://www.4kpornvideo.com/sitemap.xml
