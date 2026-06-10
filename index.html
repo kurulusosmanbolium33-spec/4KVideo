@@ -258,7 +258,7 @@ function attachCardEvents() {
     thumb.addEventListener('touchmove',()=>{touchMoved=true;if(touchTimer)clearTimeout(touchTimer);hideP();},{passive:true});
     thumb.addEventListener('touchend',()=>{if(touchTimer)clearTimeout(touchTimer);setTimeout(hideP,600);},{passive:true});
     thumb.addEventListener('touchcancel',()=>{if(touchTimer)clearTimeout(touchTimer);hideP();},{passive:true});
-    card.addEventListener('click',()=>location.href='video.html?id='+id);
+    card.addEventListener('click',()=>location.href='video/?id='+id);
   });
 }
 
