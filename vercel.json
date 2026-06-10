@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/video",
-      "destination": "/video.html"
+      "destination": "/video"
     },
     {
       "source": "/sitemap.xml",
