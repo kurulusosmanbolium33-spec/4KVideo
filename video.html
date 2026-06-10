@@ -7,9 +7,9 @@
   <meta id="metaDesc" name="description" content="Watch free 4K porn video online in ultra HD quality. Stream full-length XXX videos free." />
   <meta id="metaKeywords" name="keywords" content="4k porn, free porn video, hd xxx, adult video, stream" />
   <meta name="robots" content="index, follow" />
-  <link id="metaCanonical" rel="canonical" href="https://4kpornvideo.com/video" />
+  <link id="metaCanonical" rel="canonical" href="https://4kpornvideo.com/video.html" />
   <meta id="ogType" property="og:type" content="video.other" />
-  <meta id="ogUrl" property="og:url" content="https://4kpornvideo.com/video" />
+  <meta id="ogUrl" property="og:url" content="https://4kpornvideo.com/video.html" />
   <meta id="ogTitle" property="og:title" content="4K Porn Video" />
   <meta id="ogDesc" property="og:description" content="Watch free 4K porn video online in ultra HD quality." />
   <meta id="ogImage" property="og:image" content="https://4kpornvideo.com/og-image.jpg" />
@@ -137,11 +137,11 @@
       </button>
       <div class="dropdown" id="dropdown">
         <div class="dd-header">Sort &amp; Filter</div>
-        <a href="../?sort=latest" class="dd-item">
+        <a href="index.html?sort=latest" class="dd-item">
           <svg viewBox="0 0 24 24" style="stroke:#f5c518"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span class="label">Latest</span>
         </a>
-        <a href="../?sort=mostviews" class="dd-item">
+        <a href="index.html?sort=mostviews" class="dd-item">
           <svg viewBox="0 0 24 24" style="stroke:#f87171"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           <span class="label">Most Views</span>
         </a>
@@ -155,7 +155,7 @@
     </div>
 
     <!-- Logo CENTER -->
-    <a href="../" class="logo-wrap">
+    <a href="index.html" class="logo-wrap">
       <img src="https://i.ibb.co.com/KJR1M1S/Airbrush-IMAGE-ENHANCER-1780990857633-1780990857634.png" alt="4KPornVideo"
            onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'color:#f5c518;font-size:18px;font-weight:900\'>4K<span style=\'color:#fff\'>PORN</span><span style=\'color:#e11d48\'>VIDEO</span></span>'" />
     </a>
@@ -305,8 +305,7 @@ window.handleWatchLater=function(){
 
 /* ── META TAGS ── */
 function setMeta(id,val){const el=document.getElementById(id);if(!el)return;if(el.tagName==='META')el.content=val;else if(el.tagName==='LINK')el.href=val;}
-function buildSchema(v){
-  const url=`https://4kpornvideo.com/video?id=${videoId}`;
+function buildSchema(v,url){
   return JSON.stringify({"@context":"https://schema.org","@type":"VideoObject","name":v.title||"","description":v.description||v.title||"","thumbnailUrl":v.thumb||"","contentUrl":v.src||"","embedUrl":url,"uploadDate":new Date().toISOString().split('T')[0],"duration":"PT"+(v.duration||'0M').replace(':','M')+'S'});
 }
 
@@ -339,8 +338,7 @@ function attachRecEvents(){
     thumb.addEventListener('touchmove',()=>{touchMoved=true;if(touchTimer)clearTimeout(touchTimer);hideP();},{passive:true});
     thumb.addEventListener('touchend',()=>{if(touchTimer)clearTimeout(touchTimer);setTimeout(hideP,600);},{passive:true});
     thumb.addEventListener('touchcancel',()=>{if(touchTimer)clearTimeout(touchTimer);hideP();},{passive:true});
-    /* same-page navigation — stay inside /video/ folder */
-    card.addEventListener('click',()=>location.href='?id='+id);
+    card.addEventListener('click',()=>location.href='video.html?id='+id);
   });
 }
 
@@ -360,23 +358,23 @@ searchInput.addEventListener('input',()=>{searchClear.style.display=searchInput.
 searchClear.addEventListener('click',()=>{searchInput.value='';searchClear.style.display='none';searchInput.focus();});
 document.getElementById('searchForm').addEventListener('submit',e=>{
   e.preventDefault();const q=searchInput.value.trim();
-  if(q)location.href='../?q='+encodeURIComponent(q);
+  if(q)location.href='index.html?q='+encodeURIComponent(q);
 });
 
 /* ── MAIN LOAD ── */
 (async()=>{
-  if(!videoId){location.href='../';return;}
+  if(!videoId){location.href='index.html';return;}
   try{
     videoRef=doc(db,'videos',videoId);
     const vSnap=await getDoc(videoRef);
-    if(!vSnap.exists()){location.href='../';return;}
+    if(!vSnap.exists()){location.href='index.html';return;}
     const v={id:vSnap.id,...vSnap.data()};
     const ch=getCh(v);
     currentLikes=Number(v.likes)||0;
     currentDislikes=Number(v.dislikes)||0;
     currentVote=localStorage.getItem('vote_'+videoId)||null;
 
-    const pageUrl=`https://4kpornvideo.com/video?id=${videoId}`;
+    const pageUrl=`https://4kpornvideo.com/video.html?id=${videoId}`;
     document.title=(v.title||'Video')+' - 4KPornVideo | Watch Free 4K XXX HD';
     setMeta('metaDesc',v.description||v.title||'');
     setMeta('metaKeywords',v.keywords||ch||'4k porn video');
@@ -384,7 +382,7 @@ document.getElementById('searchForm').addEventListener('submit',e=>{
     setMeta('ogTitle',v.title||'');setMeta('ogDesc',v.description||v.title||'');
     setMeta('ogImage',v.thumb||'');setMeta('ogUrl',pageUrl);
     setMeta('twTitle',v.title||'');setMeta('twDesc',v.description||v.title||'');setMeta('twImage',v.thumb||'');
-    document.getElementById('schemaScript').textContent=buildSchema(v);
+    document.getElementById('schemaScript').textContent=buildSchema(v,pageUrl);
 
     document.getElementById('mainVideo').src=v.src||'';
     document.getElementById('mainVideo').poster=v.thumb||'';
@@ -407,16 +405,16 @@ document.getElementById('searchForm').addEventListener('submit',e=>{
     document.getElementById('loadingSection').style.display='none';
     document.getElementById('playerSection').style.display='block';
 
-    /* Load recommended + categories */
+    // Load recommended + categories
     const allSnap=await getDocs(collection(db,'videos'));
     const all=allSnap.docs.filter(d=>d.id!==videoId).map(d=>({id:d.id,...d.data()}));
 
-    /* Build category list */
+    // Build category list
     const chMap=new Map();
     all.forEach(v2=>{const c=getCh(v2);if(c&&!chMap.has(c.toLowerCase()))chMap.set(c.toLowerCase(),c);});
     const channels=[...chMap.values()].sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
     catList.innerHTML=channels.length
-      ? channels.map(c=>`<a href="../?channel=${encodeURIComponent(c)}" class="cat-item">${c}</a>`).join('')
+      ? channels.map(c=>`<a href="index.html?channel=${encodeURIComponent(c)}" class="cat-item">${c}</a>`).join('')
       : '<div style="padding:10px 16px;color:#555;font-size:12px">No categories</div>';
 
     if(all.length){
