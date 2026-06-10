@@ -7,18 +7,18 @@
   <meta id="metaDesc" name="description" content="Watch free 4K porn video online in ultra HD quality. Stream full-length XXX videos free." />
   <meta id="metaKeywords" name="keywords" content="4k porn, free porn video, hd xxx, adult video, stream" />
   <meta name="robots" content="index, follow" />
-  <link id="metaCanonical" rel="canonical" href="https://4kpornvideo.com/video" />
+  <link id="metaCanonical" rel="canonical" href="https://www.4kpornvideo.com/video" />
   <meta id="ogType" property="og:type" content="video.other" />
-  <meta id="ogUrl" property="og:url" content="https://4kpornvideo.com/video" />
+  <meta id="ogUrl" property="og:url" content="https://www.4kpornvideo.com/video" />
   <meta id="ogTitle" property="og:title" content="4K Porn Video" />
   <meta id="ogDesc" property="og:description" content="Watch free 4K porn video online in ultra HD quality." />
-  <meta id="ogImage" property="og:image" content="https://4kpornvideo.com/og-image.jpg" />
+  <meta id="ogImage" property="og:image" content="https://www.4kpornvideo.com/og-image.jpg" />
   <meta property="og:site_name" content="4KPornVideo" />
   <meta property="og:video:type" content="text/html" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta id="twTitle" name="twitter:title" content="4K Porn Video" />
   <meta id="twDesc" name="twitter:description" content="Watch free 4K porn video online in ultra HD quality." />
-  <meta id="twImage" name="twitter:image" content="https://4kpornvideo.com/og-image.jpg" />
+  <meta id="twImage" name="twitter:image" content="https://www.4kpornvideo.com/og-image.jpg" />
   <script id="schemaScript" type="application/ld+json">{}</script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -306,7 +306,7 @@ window.handleWatchLater=function(){
 /* ── META TAGS ── */
 function setMeta(id,val){const el=document.getElementById(id);if(!el)return;if(el.tagName==='META')el.content=val;else if(el.tagName==='LINK')el.href=val;}
 function buildSchema(v){
-  const url=`https://4kpornvideo.com/video?id=${videoId}`;
+  const url=`https://www.4kpornvideo.com/video?id=${videoId}`;
   return JSON.stringify({"@context":"https://schema.org","@type":"VideoObject","name":v.title||"","description":v.description||v.title||"","thumbnailUrl":v.thumb||"","contentUrl":v.src||"","embedUrl":url,"uploadDate":new Date().toISOString().split('T')[0],"duration":"PT"+(v.duration||'0M').replace(':','M')+'S'});
 }
 
@@ -376,7 +376,7 @@ document.getElementById('searchForm').addEventListener('submit',e=>{
     currentDislikes=Number(v.dislikes)||0;
     currentVote=localStorage.getItem('vote_'+videoId)||null;
 
-    const pageUrl=`https://4kpornvideo.com/video?id=${videoId}`;
+    const pageUrl=`https://www.4kpornvideo.com/video?id=${videoId}`;
     document.title=(v.title||'Video')+' - 4KPornVideo | Watch Free 4K XXX HD';
     setMeta('metaDesc',v.description||v.title||'');
     setMeta('metaKeywords',v.keywords||ch||'4k porn video');
